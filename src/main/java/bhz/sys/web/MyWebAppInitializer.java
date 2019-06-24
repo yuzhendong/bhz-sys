@@ -1,5 +1,8 @@
 package bhz.sys.web;
 import javax.servlet.Filter;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 import bhz.sys.web.config.AppConfig;
 import bhz.sys.web.config.RootConfig;
@@ -45,6 +48,13 @@ spring-web-4.3.11.RELEASE.jar包的META-INF/services/javax.servlet.ServletContai
 */
 public class MyWebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
+	@Override
+	public void onStartup(ServletContext servletContext) throws ServletException {
+		// TODO Auto-generated method stub
+		super.onStartup(servletContext);
+		//servletContext.
+	}
+
 	//获取根容器的配置类；（Spring的配置文件:进行事物、监听器、数据库连接等与web无关的配置）   父容器；
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
@@ -65,8 +75,9 @@ public class MyWebAppInitializer extends AbstractAnnotationConfigDispatcherServl
 	@Override
 	protected String[] getServletMappings() {
 		// TODO Auto-generated method stub
-		return new String[]{"/"};
+		return new String[]{"*.html","*.json"};
 	}
+	
 	/*@Override
 	protected Filter[] getServletFilters() {
 		// TODO Auto-generated method stub

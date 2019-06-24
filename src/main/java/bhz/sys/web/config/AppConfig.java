@@ -1,9 +1,16 @@
 package bhz.sys.web.config;
+import java.io.IOException;
+
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ComponentScan.Filter;
 import org.springframework.context.annotation.FilterType;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.io.PathResource;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.multipart.MultipartResolver;
+import org.springframework.web.multipart.commons.CommonsFileUploadSupport;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -44,5 +51,24 @@ public class AppConfig  extends WebMvcConfigurerAdapter  {
 		//super.addInterceptors(registry);
 	//	registry.addInterceptor(new MyFirstInterceptor()).addPathPatterns("/**");
 	}
-
+	//配置文件上传解析器
+	@Bean
+public	MultipartResolver multipartResolver() {
+		MultiparResolverConfig multiparResolverConfig = getMultiparResolverConfig();
+		CommonsMultipartResolver commonsMultipartResolver = new CommonsMultipartResolver();	
+		commonsMultipartResolver.setDefaultEncoding(multiparResolverConfig.getDefaultEncoding());
+		commonsMultipartResolver.setMaxInMemorySize(multiparResolverConfig.getMaxInMemorySize());
+		commonsMultipartResolver.setMaxUploadSize(multiparResolverConfig.getMaxUploadSize());
+		try {
+			commonsMultipartResolver.setUploadTempDir(new PathResource(multiparResolverConfig.getUploadTempDir()));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return commonsMultipartResolver;
+	}
+	@Bean 
+	public	MultiparResolverConfig getMultiparResolverConfig(){
+		return new MultiparResolverConfig();
+	}
 }
