@@ -4,6 +4,9 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
+import org.springframework.web.util.Log4jConfigListener;
+import org.springframework.web.util.Log4jWebConfigurer;
+
 import bhz.sys.web.config.AppConfig;
 import bhz.sys.web.config.RootConfig;
 /*1、Servlet容器在启动的时候，会扫描每个jar包下的META-INF/services/javax.servlet.ServletContainerInitializer
@@ -52,7 +55,10 @@ public class MyWebAppInitializer extends AbstractAnnotationConfigDispatcherServl
 	public void onStartup(ServletContext servletContext) throws ServletException {
 		// TODO Auto-generated method stub
 		super.onStartup(servletContext);
-		//servletContext.
+		//servletContext.setAttribute(name, object);
+		servletContext.setInitParameter("webAppRootKey", "bhz-sys.root");
+		servletContext.setInitParameter(Log4jWebConfigurer.CONFIG_LOCATION_PARAM, "/WEB-INF/classes/log4j.properties");
+		servletContext.addListener(Log4jConfigListener.class);
 	}
 
 	//获取根容器的配置类；（Spring的配置文件:进行事物、监听器、数据库连接等与web无关的配置）   父容器；
