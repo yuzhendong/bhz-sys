@@ -3,6 +3,7 @@ package bhz.sys.web.config;
 import javax.sql.DataSource;
 
 import org.logicalcobwebs.proxool.ProxoolDataSource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
@@ -21,12 +22,14 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 })
 @EnableTransactionManagement
 @EnableAspectJAutoProxy
-//@PropertySource(value= {"classpath:/config.properties"})
+@PropertySource(value= {"classpath:/config.properties"})
 public class RootConfig {
+	@Autowired
+	JdbcConnectConfig jdbcConnectConfig;
 	//数据源
-/*	@Bean
+	@Bean
 	public DataSource dataSource() throws Exception{
-		JdbcConnectConfig jdbcConnectConfig = jdbcConnectConfig();
+		//JdbcConnectConfig jdbcConnectConfig = jdbcConnectConfig();
 		ProxoolDataSource dataSource = new ProxoolDataSource();
 		dataSource.setDriver(jdbcConnectConfig.getDriver());
 		dataSource.setDriverUrl(jdbcConnectConfig.getDriverUrl());
@@ -38,23 +41,21 @@ public class RootConfig {
 		dataSource.setMaximumActiveTime(jdbcConnectConfig.getMaximumActiveTime());
 		dataSource.setPrototypeCount(jdbcConnectConfig.getPrototypeCount());
 		dataSource.setHouseKeepingTestSql(jdbcConnectConfig.getHouseKeepingTestSql());
-		//dataSource.setDriverClass("oracle.jdbc.driver.OracleDriver");
-		//dataSource.setJdbcUrl("jdbc:oracle:thin:@localhost:1521:ORA8");
 		return dataSource;
-	}*/
+	}
 	
-/*	@Bean
+	@Bean
 	public JdbcTemplate jdbcTemplate() throws Exception{
 		//Spring对@Configuration类会特殊处理；给容器中加组件的方法，多次调用都只是从容器中找组件
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource());
 		return jdbcTemplate;
-	}*/
+	}
 	//注册事务管理器在容器中
-/*	@Bean
+	@Bean
 	public PlatformTransactionManager transactionManager() throws Exception{
 		return new DataSourceTransactionManager(dataSource());
 	}
-	@Bean
+/*	@Bean
 	public JdbcConnectConfig jdbcConnectConfig(){
 		return new JdbcConnectConfig();
 	}*/

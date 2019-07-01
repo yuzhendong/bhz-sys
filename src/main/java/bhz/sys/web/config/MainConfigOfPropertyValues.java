@@ -8,12 +8,12 @@ import org.springframework.context.annotation.FilterType;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.ComponentScan.Filter;
 import org.springframework.stereotype.Controller;
-@PropertySource(value={"classpath:/config.properties"})
-@ComponentScan(value="bhz")
-@Configuration
+//@PropertySource(value={"classpath:/config.properties"})
+//@ComponentScan(value="bhz")
+//@Configuration
 public class MainConfigOfPropertyValues {	
-	@Bean 
+/*	@Bean 
 	public	MultiparResolverConfig getMultiparResolverConfig(){
 		return new MultiparResolverConfig();
-	}
+	}*/
 }

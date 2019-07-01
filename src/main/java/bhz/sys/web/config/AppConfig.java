@@ -2,6 +2,7 @@ package bhz.sys.web.config;
 import java.io.IOException;
 import java.util.Properties;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.EmbeddedValueResolverAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -30,6 +31,8 @@ import org.springframework.web.servlet.view.JstlView;
 @EnableWebMvc
 @PropertySource(value= {"classpath:/config.properties"})
 public class AppConfig  extends WebMvcConfigurerAdapter{
+	//@Autowired
+	//private MultiparResolverConfig multiparResolverConfig;
 	private StringValueResolver valueResolver;
 	private String  driverClass;
 	//视图解析器
@@ -61,12 +64,14 @@ public class AppConfig  extends WebMvcConfigurerAdapter{
 	}
 	//配置文件上传解析器
 	@Bean
-public	MultipartResolver multipartResolver() {
-		MultiparResolverConfig multiparResolverConfig = getMultiparResolverConfig();
+public	MultipartResolver multipartResolver(MultiparResolverConfig multiparResolverConfig) {
+		//通过直接调用getMultiparResolverConfig()获取bean的方式，无法通过@value注入配置文件的值
+		//MultiparResolverConfig multiparResolverConfig = getMultiparResolverConfig();
 		CommonsMultipartResolver commonsMultipartResolver = new CommonsMultipartResolver();	
 		commonsMultipartResolver.setDefaultEncoding(multiparResolverConfig.getDefaultEncoding());
 		commonsMultipartResolver.setMaxInMemorySize(Integer.parseInt(multiparResolverConfig.getMaxInMemorySize()));
 		commonsMultipartResolver.setMaxUploadSize(Long.parseLong(multiparResolverConfig.getMaxUploadSize()));
+		System.out.println(multiparResolverConfig.toString());
 		try {
 			commonsMultipartResolver.setUploadTempDir(new PathResource(multiparResolverConfig.getUploadTempDir()));
 		} catch (IOException e) {
