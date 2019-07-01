@@ -4,25 +4,25 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 public class JdbcConnectConfig {
-	@Value("${config.driver}")
+	@Value("${jdbc.driver}")
 	private String driver;
-	@Value("${config.url}")
+	@Value("${jdbc.url}")
 	private String driverUrl;
-	@Value("${config.username}")
+	@Value("${jdbc.username}")
 	private String user;
-	@Value("${config.password}")
+	@Value("${jdbc.password}")
 	private String password;
-	@Value("${config.nickName}")
+	@Value("${jdbc.minConnection}")
 	private long maximumActiveTime;
-	@Value("${config.maxConnection}")
+	@Value("${jdbc.maxConnection}")
 	private int maximumConnectionCount;
-	@Value("${config.maxConnectionLife}")
+	@Value("${jdbc.maxConnectionLife}")
 	private long maximumConnectionLifetime;
-	@Value("${config.minConnection}")
+	@Value("${jdbc.maxActiveTime}")
 	private int minimumConnectionCount;
-	@Value("${config.prototypeCount}")
+	@Value("${jdbc.prototypeCount}")
 	private int prototypeCount;
-	@Value("${config.testSql}")
+	@Value("${jdbc.testSql}")
 	private String houseKeepingTestSql;
 
 	public String getDriver() {

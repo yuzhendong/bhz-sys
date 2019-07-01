@@ -21,10 +21,10 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 })
 @EnableTransactionManagement
 @EnableAspectJAutoProxy
-@PropertySource(value={"classpath:/config.properties"})
+//@PropertySource(value= {"classpath:/config.properties"})
 public class RootConfig {
 	//数据源
-	@Bean
+/*	@Bean
 	public DataSource dataSource() throws Exception{
 		JdbcConnectConfig jdbcConnectConfig = jdbcConnectConfig();
 		ProxoolDataSource dataSource = new ProxoolDataSource();
@@ -41,7 +41,7 @@ public class RootConfig {
 		//dataSource.setDriverClass("oracle.jdbc.driver.OracleDriver");
 		//dataSource.setJdbcUrl("jdbc:oracle:thin:@localhost:1521:ORA8");
 		return dataSource;
-	}
+	}*/
 	
 /*	@Bean
 	public JdbcTemplate jdbcTemplate() throws Exception{
@@ -50,12 +50,12 @@ public class RootConfig {
 		return jdbcTemplate;
 	}*/
 	//注册事务管理器在容器中
-	@Bean
+/*	@Bean
 	public PlatformTransactionManager transactionManager() throws Exception{
 		return new DataSourceTransactionManager(dataSource());
 	}
 	@Bean
 	public JdbcConnectConfig jdbcConnectConfig(){
 		return new JdbcConnectConfig();
-	}
+	}*/
 }
