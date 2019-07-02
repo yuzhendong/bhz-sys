@@ -27,7 +27,7 @@ public class SysIndexController {
  * @return
  */
 @RequestMapping("/sysindex.html")
-public ModelAndView index(HttpServerRequest request,HttpServletResponse response) {
+public ModelAndView index() {
 	ModelAndView ret=new ModelAndView();
 	return ret;
 }
