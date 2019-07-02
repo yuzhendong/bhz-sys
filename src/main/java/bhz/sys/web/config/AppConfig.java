@@ -23,6 +23,8 @@ import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
+
+import bhz.sys.web.controller.MyFirstInterceptor;
 //SpringMVC只扫描Controller；子容器
 //useDefaultFilters=false 禁用默认的过滤规则；
 @ComponentScan(value="bhz",includeFilters={
@@ -60,7 +62,7 @@ public class AppConfig  extends WebMvcConfigurerAdapter{
 	public void addInterceptors(InterceptorRegistry registry) {
 		// TODO Auto-generated method stub
 		//super.addInterceptors(registry);
-	//	registry.addInterceptor(new MyFirstInterceptor()).addPathPatterns("/**");
+		registry.addInterceptor(new MyFirstInterceptor()).addPathPatterns("/**");
 	}
 	//配置文件上传解析器
 	@Bean

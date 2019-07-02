@@ -11,14 +11,13 @@ import bhz.sys.web.config.AppConfig;
 import bhz.sys.web.config.MyFirstFilter;
 import bhz.sys.web.config.RootConfig;
 public class MyWebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
-
 	@Override
 	public void onStartup(ServletContext servletContext) throws ServletException {
 		// TODO Auto-generated method stub
 		super.onStartup(servletContext);
 		servletContext.setInitParameter("webAppRootKey", "bhz-sys.root");
-		//servletContext.setInitParameter(Log4jWebConfigurer.CONFIG_LOCATION_PARAM, "/WEB-INF/classes/log4j.properties");
-		//servletContext.addListener(Log4jConfigListener.class);
+		servletContext.setInitParameter(Log4jWebConfigurer.CONFIG_LOCATION_PARAM, "/WEB-INF/classes/log4j.properties");
+		servletContext.addListener(Log4jConfigListener.class);
 	}
 
 	//获取根容器的配置类；（Spring的配置文件:进行事物、监听器、数据库连接等与web无关的配置）   父容器；

@@ -55,8 +55,4 @@ public class RootConfig {
 	public PlatformTransactionManager transactionManager() throws Exception{
 		return new DataSourceTransactionManager(dataSource());
 	}
-/*	@Bean
-	public JdbcConnectConfig jdbcConnectConfig(){
-		return new JdbcConnectConfig();
-	}*/
 }
